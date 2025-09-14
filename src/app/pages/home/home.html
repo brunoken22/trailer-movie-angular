@@ -1,0 +1,94 @@
+<header>
+  <h1 class="text-3xl mt-4">Mejores peliculas</h1>
+  <div class="grid grid-cols-[repeat(1,1fr_400px)] max-lg:grid-cols-1 gap-20 pt-8">
+    <div>
+      <section class="relative h-[300px]">
+        <div class="w-full h-full">
+          <img
+            src="https://img.youtube.com/vi/U2Qp5pL3ovA/mqdefault.jpg"
+            class="w-full h-full object-cover brightness-60"
+          />
+        </div>
+        <div class="absolute inset-0 flex gap-4 justify-center items-center flex-col">
+          <h2 class="font-semibold text-2xl">Peliculas de superheroe</h2>
+          <app_button [title]="title" />
+        </div>
+      </section>
+      <section>
+        <div class="flex gap-4 p-4 w-full justify-between bg-secondary/30 mt-4">
+          @for(salient of navigationSalient();track salient.id){
+          <a
+            routerLink=""
+            [queryParams]="{ salient: salient.salient }"
+            routerLinkActive="hover:text-primary/90"
+            [routerLinkActiveOptions]="{ exact: true }"
+            [class.text-primary]="salientParamas() === salient.salient"
+            >{{ salient.title }}</a
+          >
+          }
+        </div>
+        <app_movies-salient [salientParamas]="salientParamas()" />
+      </section>
+    </div>
+    <div>
+      <div class="bg-secondary/40 rounded-md border-t-4 border-secondary p-4 flex gap-4 flex-col">
+        <h2 class="text-xl">COMPRAR ENTREDAS</h2>
+        <form action="" class="flex flex-col gap-4 my-4">
+          <select
+            name=""
+            id=""
+            class="p-2 text-white border-transparent focus:outline-none bg-secondary rounded-sm border focus:border-primary/30 focus-visible:border-primary/30 shadow-sm"
+          >
+            <option value="">Seleccionar alguna peliculas</option>
+            <option value="ironMan">Iron Man</option>
+            <option value="daredevil">Daredevil</option>
+            <option value="planetaDeLosSimios">Planeta de los simios</option>
+          </select>
+          <select
+            name=""
+            id=""
+            class="p-2 text-white border-transparent focus:outline-none bg-secondary rounded-sm border focus:border-primary/30 focus-visible:border-primary/30 shadow-sm"
+          >
+            >
+            <option value="">Seleccionar cine</option>
+            <option value="Cine Monumental">Cine Monumental</option>
+            <option value="Cine Gaumont">Cine Gaumont</option>
+            <option value="Cine Hoyts Abasto">Cine Hoyts Abasto</option>
+          </select>
+          <input
+            type="date"
+            name=""
+            id=""
+            class="p-2 text-white border-transparent focus:outline-none bg-secondary rounded-sm border focus:border-primary/30 focus-visible:border-primary/30 shadow-sm dark:[color-scheme:dark]"
+          />
+          <input
+            type="time"
+            name=""
+            id=""
+            class="p-2 text-white border-transparent focus:outline-none bg-secondary rounded-sm border focus:border-primary/30 focus-visible:border-primary/30 shadow-sm dark:[color-scheme:dark]"
+          />
+        </form>
+        <app_button title="CONSIGUE ENTREDAS AHORA" />
+      </div>
+      <div class="mt-8">
+        <div>
+          <div
+            class="bg-secondary/40 rounded-md border-t-4 border-secondary p-4 flex gap-4 flex-col"
+          >
+            <h2 class="text-xl">CINES CERCA DE UNO</h2>
+            <div class="flex gap-3 flex-col my-4">
+              @for(cinema of cinemas;track cinema.id) {
+              <a href="{{ cinema.url }}" class="hover:text-primary flex items-center">
+                <ng-icon name="heroMapPin" size="34" class="mr-1" />
+                <strong>{{ cinema.titulo }}: </strong>
+                <span>{{ cinema.ubicacion }}</span>
+              </a>
+              }
+            </div>
+            <app_button title="CAMBIAR UBICACIÓN" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

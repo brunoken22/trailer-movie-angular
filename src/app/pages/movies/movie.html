@@ -1,0 +1,18 @@
+<section>
+  <h1 class="font-bold text-4xl pt-4 pb-8">Peliculas</h1>
+  <div class="my-8">
+    <input
+      type="text"
+      name="Buscador"
+      id="search"
+      placeholder="Buscar pelicula..."
+      (input)="handleSearch($event)"
+      class="w-full p-2 bg-secondary/30 rounded-sm border border-transparent focus:outline-none focus:border-primary/30 focus-visible:border-primary/30 shadow-sm"
+    />
+  </div>
+  <div class="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 flex-wrap gap-4">
+    @for(movie of movies();track movie.id){
+    <app_movieCard [movie]="movie" />
+    }
+  </div>
+</section>
